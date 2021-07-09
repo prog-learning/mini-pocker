@@ -1,34 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# React×TypeScript でポーカー作るよ
 
-## Getting Started
+全然ポーカー知らない人が簡単なポーカーっぽいアプリ作る
 
-First, run the development server:
+## 仕様
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+1〜5 の数の書かれたカードが赤青黄の 3 色で計 15 枚
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+最初に 5 枚引き,そこから 1 枚ずつ変えて役を揃える
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+カードの変更は 2 回のみ
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### 役
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- ストレートフラッシュ...同色 1,2,3,4,5
+- ストレート...1,2,3,4,5
+- フルハウス...同じ数 3 枚と同じ数 2 枚
+- スリーカード...同じ数 3 枚
+- ツーペア...同じ数 2 枚が 2 つ
+- 役なし（ワンペア）
 
-## Learn More
+### ルール
 
-To learn more about Next.js, take a look at the following resources:
+10P スタートで BET した POINT を役の上から 5, 4, 3, 2, 1, 0 倍した POINT を獲得できる
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+これを 3 回繰り返したときの合計点をスコアとする
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+最高点は 10 × 5 × 5 × 5 = 1250P
 
-## Deploy on Vercel
+## 使用
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- React×TypeScript
+- Next.js
+- recoil
+- fower
+- jest
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 手順
+
+1. TypeScript の準備
+2. カードの型を作成
+3. 15 枚のカードを生成
+4. 生成したカードを shuffle する
+5. カードの最初の 5 枚を並べて表示
+6. カードに色を付ける
+7. マウスが乗ったカードにエフェクト
+8. カードを 2 回だけ引き直せるようにする
+9. 役を判定する関数を作成し test する
+10. 決定ボタンで役を判定できるようにする
+11. BET するポイントを入力
+12. 決定ボタンで役に応じたポイントを取得
+
+## Jest Setup
+
+https://qiita.com/keitakn/items/0a714997eb058f2f67e2
